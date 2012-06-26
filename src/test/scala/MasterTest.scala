@@ -14,8 +14,10 @@ class MasterTest extends Specification { def is =
   end
 
   def e01 = useMasterActor { master =>
-    val future = (master ? Compute).mapTo[Result]
-    Await.result(future, waitDuration) === Result(55)
+    val future = (master ? Compute).mapTo[Event]
+    val result = Await.result(future, waitDuration)
+    result must beAnInstanceOf[Result] and
+    result === Result(55)
   }
 
   val useMasterActor = useActor(Props[Master]) _
