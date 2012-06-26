@@ -1,3 +1,5 @@
+package psug
+
 import akka.actor.Props
 import akka.dispatch.Await
 import org.specs2.Specification

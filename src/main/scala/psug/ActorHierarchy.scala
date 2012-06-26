@@ -1,3 +1,5 @@
+package psug
+
 import akka.actor.{ActorRef, Props, Actor}
 
 import akka.dispatch.Future

@@ -1,3 +1,5 @@
+package psug
+
 import akka.actor._
 import akka.util.duration._
 import akka.util.{Timeout, Duration}
