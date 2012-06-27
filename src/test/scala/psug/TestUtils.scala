@@ -17,7 +17,7 @@ object TestUtils {
 
   def useActor(props: Props)(test: ActorRef => MatchResult[_]) = {
     val system = ActorSystem("root")
-    val actor = system.actorOf(props)
+    val actor = system.actorOf(props, name = "test")
     try {
       test(actor)
     } finally {

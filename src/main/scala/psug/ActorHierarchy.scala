@@ -7,7 +7,7 @@ import akka.routing.RoundRobinRouter
 import akka.util.{Timeout, Duration}
 import java.util.concurrent.TimeUnit
 import scala.math._
-import akka.pattern.ask
+import akka.pattern.{ask, pipe}
 
 /**
  * @author David Galichet.
@@ -23,7 +23,8 @@ class Master extends Actor {
 
   val waitDuration = Duration(5, TimeUnit.SECONDS)
   implicit val timeout = Timeout(waitDuration)
-  implicit val dispatcher = context.dispatcher
+
+  import context._
 
   val nrOfWorkers = 4
 
@@ -36,7 +37,8 @@ class Master extends Actor {
   def processComputation(replyTo: ActorRef) {
     val futures = (1 to 10).map( x => (workerRouter ? Work(x)).mapTo[Result] )
     val future = Future.sequence(futures).map( lr => lr.map(_.i).sum ).map(Result(_))
-    future.onComplete( _.fold( { e => replyTo ! Error(e.getMessage) }, { r => replyTo ! r } ) )
+    //future.onComplete( _.fold( { e => replyTo ! Error(e.getMessage) }, { r => replyTo ! r } ) )
+    future pipeTo replyTo
   }
 }
 
