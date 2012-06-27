@@ -1,9 +1,9 @@
-package psug
+package psug.simple
 
 import akka.actor.Props
 import akka.dispatch.Await
 import org.specs2.Specification
-import TestUtils._
+import psug.TestUtils._
 import akka.pattern.ask
 
 /**

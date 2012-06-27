@@ -1,10 +1,10 @@
-package psug
+package psug.simple
 
 import akka.actor._
 import akka.dispatch.Await
 import org.specs2.Specification
 import akka.pattern.ask
-import TestUtils._
+import psug.TestUtils._
 
 /**
  * @author David Galichet.

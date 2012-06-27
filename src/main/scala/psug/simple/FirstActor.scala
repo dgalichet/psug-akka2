@@ -2,7 +2,7 @@
  * @author David Galichet.
  */
 
-package psug
+package psug.simple
 
 import akka.actor._
 import akka.util.Duration

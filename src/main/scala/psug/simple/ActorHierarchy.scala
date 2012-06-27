@@ -1,4 +1,4 @@
-package psug
+package psug.simple
 
 import akka.actor.{ActorRef, Props, Actor}
 
