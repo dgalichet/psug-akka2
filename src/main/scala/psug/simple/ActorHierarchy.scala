@@ -1,6 +1,6 @@
 package psug.simple
 
-import akka.actor.{ActorRef, Props, Actor}
+import akka.actor.{ActorLogging, ActorRef, Props, Actor}
 
 import akka.dispatch.Future
 import akka.routing.RoundRobinRouter
@@ -42,14 +42,14 @@ class Master extends Actor {
   }
 }
 
-class Worker extends Actor {
+class Worker extends Actor with ActorLogging {
   protected def receive = {
     case Work(i) => sender ! Result(doWork(i))
   }
 
   private def doWork(i: Int) = {
-    println("computing...")
-    Thread.sleep(round(random * 1000))
+    log.info("computing ...")
+    Thread.sleep(round(random * 100))
     i^2
   }
 }

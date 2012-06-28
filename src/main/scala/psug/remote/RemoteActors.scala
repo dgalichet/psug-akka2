@@ -29,13 +29,13 @@ class WorkerApplication(val port: Int) extends Bootable {
 
 object WorkerApplication {
 
-  // run with xsbt 'run xxx'
+  // run with xsbt 'run xxx' to override port number
 
   def main(args: Array[String]) {
     val port = args.headOption.map(_.toInt).getOrElse(2552)
     println("Starting worker on port " + port)
     new WorkerApplication(port)
-    println("working for work ...")
+    println("waiting for work ...")
   }
 }
 
